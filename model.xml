@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+	<properties>
+		<graphics key="legendautolayout" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="TrafficLight">
+			<graphics key="collapsed" value="false"/>
+			<feature mandatory="true" name="Base"/>
+			<and abstract="true" mandatory="true" name="Roads">
+				<feature mandatory="true" name="Left"/>
+				<feature mandatory="true" name="Right"/>
+				<feature name="Bottom"/>
+				<feature name="Top"/>
+			</and>
+			<feature name="OrangeLight"/>
+			<feature name="Pedestrians"/>
+			<alt abstract="true" mandatory="true" name="Strategy">
+				<feature name="Timed"/>
+				<feature name="OnRequest"/>
+			</alt>
+		</and>
+	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>Roads</var>
+				<disj>
+					<var>Bottom</var>
+					<disj>
+						<var>Top</var>
+						<var>Pedestrians</var>
+					</disj>
+				</disj>
+			</imp>
+		</rule>
+	</constraints>
+</featureModel>
