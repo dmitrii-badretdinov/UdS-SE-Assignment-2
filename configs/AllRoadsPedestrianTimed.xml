@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="TrafficLight"/>
+	<feature automatic="selected" name="Base"/>
+	<feature automatic="selected" name="Roads"/>
+	<feature automatic="selected" name="Left"/>
+	<feature automatic="selected" name="Right"/>
+	<feature manual="selected" name="Bottom"/>
+	<feature manual="selected" name="Top"/>
+	<feature name="OrangeLight"/>
+	<feature manual="selected" name="Pedestrians"/>
+	<feature automatic="selected" name="Strategy"/>
+	<feature manual="selected" name="Timed"/>
+	<feature automatic="unselected" name="OnRequest"/>
+</configuration>

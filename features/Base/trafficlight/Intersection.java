@@ -17,8 +17,7 @@ public abstract class Intersection {
 	 * @return an instance of your intersection implementation.
 	 */
 	public static Intersection createIntersection() {
-		// TODO: return an instance of your intersection implementation here!
-		return null;
+		return new IntersectionClass();
 	}
 	
 	/**
