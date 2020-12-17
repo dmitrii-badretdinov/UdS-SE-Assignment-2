@@ -18,5 +18,11 @@ public class IntersectionClass
 		return output;
 	}
 	
+	private String composeIntersectionStateOutput(String finishedLeftPart) {
+		finishedLeftPart += "LV";
+		
+		return original(finishedLeftPart);
+	}
+	
 	private int leftVehicleCount;
 }
