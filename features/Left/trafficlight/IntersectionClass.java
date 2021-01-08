@@ -10,18 +10,25 @@ public class IntersectionClass
 		leftVehicleCount = 0;
 	}
 	
-	public String getIntersectionState() {
-		String output = "";
+	public void enqueueVehicle(Road road) {
+		if(road == Road.LEFT) {
+			leftVehicleCount++;
+		}
+		else {
+			original(road);
+		}
+	}
+	
+	public void advanceTime() {
 		
-		output += "LV";
-		
-		return output;
+	}
+	
+	public String getIntersectionState() {		
+		return composeIntersectionStateOutput("");
 	}
 	
 	private String composeIntersectionStateOutput(String finishedLeftPart) {
-		finishedLeftPart += "LV";
-		
-		return original(finishedLeftPart);
+		return finishedLeftPart + "LV" + leftVehicleCount;
 	}
 	
 	private int leftVehicleCount;
