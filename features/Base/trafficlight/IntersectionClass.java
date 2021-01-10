@@ -8,10 +8,6 @@ import java.lang.IllegalArgumentException;
  */
 public class IntersectionClass 	
 	extends Intersection {
-
-	public IntersectionClass() {
-		
-	}
 	
 	public void enqueueVehicle(Road road) {
 		throw new IllegalArgumentException("Cannot enqueue a vehicle on the road " + road);
@@ -25,8 +21,17 @@ public class IntersectionClass
 		throw new Exception("Cannot get intersection.");
 	}
 	
-	private enum Light {
+	private enum VehicleLight {
 		RED,
-		GREEN
+		GREEN;
+		
+		@Override
+		public String toString() {
+			switch(this) {
+				case RED: return "r";
+				case GREEN: return "g";
+				default: throw new IllegalArgumentException("The light has the color that shouldn't exist.");
+			}
+		}
 	}
 }

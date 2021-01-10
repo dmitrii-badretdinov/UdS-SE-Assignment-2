@@ -10,16 +10,20 @@ import trafficlight.Intersection;
 import trafficlight.Road;
 
 public class LeftTest{
-	
-	/*
-	 * Has LV and 1 in the output.
-	 */
 	@Test
-	void initializationCheck() {
+	void composeIntersectionStateOutput_createIntersection_HasLVg0() {
+		Intersection sample = Intersection.createIntersection();
+		System.out.format(OutputSettings.testNameFormat + OutputSettings.testResultFormat + "\n", "Left basic:", sample.getIntersectionState());
+		assertTrue(sample.getIntersectionState().contains("LVg0"));
+	}
+	
+	@Test
+	void composeIntersectionStateOutput_enqueueVehicle_HasLVg3() {
 		Intersection sample = Intersection.createIntersection();
 		sample.enqueueVehicle(Road.LEFT);
-		System.out.print(sample.getIntersectionState());
-		assertTrue(sample.getIntersectionState().contains("LV"));
-		assertTrue(sample.getIntersectionState().contains("1"));
+		sample.enqueueVehicle(Road.LEFT);
+		sample.enqueueVehicle(Road.LEFT);
+		System.out.format(OutputSettings.testNameFormat + OutputSettings.testResultFormat + "\n", "Left vehicles:", sample.getIntersectionState());
+		assertTrue(sample.getIntersectionState().contains("LVg3"));
 	}
 }
