@@ -3,9 +3,6 @@ package trafficlight;
 import java.lang.Exception;
 import java.lang.IllegalArgumentException;
 
-/**
- * The basic skeleton of an intersection class.
- */
 public class IntersectionClass 	
 	extends Intersection {
 	
@@ -19,19 +16,5 @@ public class IntersectionClass
 	
 	public String getIntersectionState() {
 		throw new Exception("Cannot get intersection.");
-	}
-	
-	private enum VehicleLight {
-		RED,
-		GREEN;
-		
-		@Override
-		public String toString() {
-			switch(this) {
-				case RED: return "r";
-				case GREEN: return "g";
-				default: throw new IllegalArgumentException("The light has the color that shouldn't exist.");
-			}
-		}
 	}
 }

@@ -4,16 +4,15 @@ import trafficlight.FeatureFlags;
 
 public class IntersectionClass 	
 	extends Intersection {
-
+	
 	public IntersectionClass() {
-		topVehicleCount = 0;
-		topVehicleLight = VehicleLight.RED;
+		topRoad = new TopRoad();
 		FeatureFlags.topIsActive = true;
 	}
 	
 	public void enqueueVehicle(Road road) {
 		if(road == Road.TOP) {
-			topVehicleCount++;
+			topRoad.enqueueVehicle();
 		}
 		else {
 			original(road);
@@ -21,25 +20,27 @@ public class IntersectionClass
 	}
 	
 	public void advanceTime() {
+		topRoad.advanceTime();
 		original();
+	}
+	
+	public void enqueuePedestrian(Road road) {
+		if(road == Road.TOP) {
+			topRoad.enqueuePedestrian();
+		}
+		else {
+			original(road);
+		}
 	}
 	
 	private String composeIntersectionStateOutput(String finishedLeftPart) {
-		return original(finishedLeftPart) + "TV" + topVehicleLight.toString() + topVehicleCount + pedestrianInfo(Road.TOP);
+		return original(finishedLeftPart) + topRoad.getRoadState() + " ";
 	}
 	
 	private void initiateChangingLights() {
-		topVehicleLight = changeVehicleLight(topVehicleLight);
+		topRoad.changeLights();
 		original();
 	}
 	
-	private void processVehicles() {
-		if(topVehicleLight == VehicleLight.GREEN && topVehicleCount > 0) {
-			topVehicleCount--;
-		}
-		original();
-	}
-	
-	private int topVehicleCount;
-	private VehicleLight topVehicleLight;
+	private TopRoad topRoad;
 }

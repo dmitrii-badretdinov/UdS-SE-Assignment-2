@@ -4,13 +4,12 @@ public class IntersectionClass
 	extends Intersection {
 	
 	public IntersectionClass() {
-		rightVehicleCount = 0;
-		rightVehicleLight = VehicleLight.GREEN;
+		rightRoad = new RightRoad();
 	}
 	
 	public void enqueueVehicle(Road road) {
 		if(road == Road.RIGHT) {
-			rightVehicleCount++;
+			rightRoad.enqueueVehicle();
 		}
 		else {
 			original(road);
@@ -18,25 +17,27 @@ public class IntersectionClass
 	}
 	
 	public void advanceTime() {
+		rightRoad.advanceTime();
 		original();
+	}
+	
+	public void enqueuePedestrian(Road road) {
+		if(road == Road.RIGHT) {
+			rightRoad.enqueuePedestrian();
+		}
+		else {
+			original(road);
+		}
 	}
 	
 	private String composeIntersectionStateOutput(String finishedLeftPart) {
-		return original(finishedLeftPart) + "RV" + rightVehicleLight.toString() + rightVehicleCount + pedestrianInfo(Road.RIGHT) + " ";
+		return original(finishedLeftPart) + rightRoad.getRoadState() + " ";
 	}
-
+	
 	private void initiateChangingLights() {
-		rightVehicleLight = changeVehicleLight(rightVehicleLight);
+		rightRoad.changeLights();
 		original();
 	}
 	
-	private void processVehicles() {
-		if(rightVehicleLight == VehicleLight.GREEN && rightVehicleCount > 0) {
-			rightVehicleCount--;
-		}
-		original();
-	}
-	
-	private int rightVehicleCount;
-	private VehicleLight rightVehicleLight;
+	private RightRoad rightRoad;
 }

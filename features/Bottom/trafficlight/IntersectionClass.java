@@ -4,16 +4,15 @@ import trafficlight.FeatureFlags;
 
 public class IntersectionClass 	
 	extends Intersection {
-
+	
 	public IntersectionClass() {
-		bottomVehicleCount = 0;
-		bottomVehicleLight = VehicleLight.RED;
+		bottomRoad = new BottomRoad();
 		FeatureFlags.bottomIsActive = true;
 	}
 	
 	public void enqueueVehicle(Road road) {
 		if(road == Road.BOTTOM) {
-			bottomVehicleCount++;
+			bottomRoad.enqueueVehicle();
 		}
 		else {
 			original(road);
@@ -21,25 +20,27 @@ public class IntersectionClass
 	}
 	
 	public void advanceTime() {
+		bottomRoad.advanceTime();
 		original();
+	}
+	
+	public void enqueuePedestrian(Road road) {
+		if(road == Road.BOTTOM) {
+			bottomRoad.enqueuePedestrian();
+		}
+		else {
+			original(road);
+		}
 	}
 	
 	private String composeIntersectionStateOutput(String finishedLeftPart) {
-		return original(finishedLeftPart) + "BV" + bottomVehicleLight.toString() + bottomVehicleCount + pedestrianInfo(Road.BOTTOM) + " ";
+		return original(finishedLeftPart) + bottomRoad.getRoadState() + " ";
 	}
 	
 	private void initiateChangingLights() {
-		bottomVehicleLight = changeVehicleLight(bottomVehicleLight);
+		bottomRoad.changeLights();
 		original();
 	}
 	
-	private void processVehicles() {
-		if(bottomVehicleLight == VehicleLight.GREEN && bottomVehicleCount > 0) {
-			bottomVehicleCount--;
-		}
-		original();
-	}
-	
-	private int bottomVehicleCount;
-	private VehicleLight bottomVehicleLight;
+	private BottomRoad bottomRoad;
 }

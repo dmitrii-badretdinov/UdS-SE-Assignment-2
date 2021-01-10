@@ -17,7 +17,7 @@ public class IntersectionClass
 			timeCounter = 0;
 			initiateChangingLights();
 		}
-		processVehicles();
+		original();
 	}
 	
 

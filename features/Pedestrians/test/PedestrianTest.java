@@ -32,8 +32,8 @@ public class PedestrianTest{
 	
 	@Test
 	void Bottom_enqueuePedestrian_HasBVr3Pg3() {
+		Intersection sample = Intersection.createIntersection();
 		if (FeatureFlags.bottomIsActive) {
-			Intersection sample = Intersection.createIntersection();
 			for(int i = 0; i < 3; i++) {
 				sample.enqueueVehicle(Road.BOTTOM);
 				sample.enqueuePedestrian(Road.BOTTOM);
@@ -45,8 +45,8 @@ public class PedestrianTest{
 
 	@Test
 	void Top_enqueuePedestrian_HasTVr3Pg3() {
+		Intersection sample = Intersection.createIntersection();
 		if (FeatureFlags.topIsActive) {
-			Intersection sample = Intersection.createIntersection();
 			for(int i = 0; i < 3; i++) {
 				sample.enqueueVehicle(Road.TOP);
 				sample.enqueuePedestrian(Road.TOP);

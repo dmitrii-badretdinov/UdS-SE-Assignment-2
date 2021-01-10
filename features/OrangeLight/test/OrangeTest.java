@@ -8,12 +8,12 @@ import trafficlight.FeatureFlags;
 
 public class OrangeTest{
 	
+	//TODO change the test to have orange
 	@Test
 	void Roads_enqueueVehicle_HasCorrectOutput() {
+		Intersection sample = Intersection.createIntersection();
 		if (FeatureFlags.timedIsActive && FeatureFlags.topIsActive && FeatureFlags.bottomIsActive) {
 			System.out.println("Orange and Timed test");
-			
-			Intersection sample = Intersection.createIntersection();
 			
 			sample.enqueueVehicle(Road.BOTTOM);
 			assertTrue(sample.getIntersectionState().contains("LVg1"));

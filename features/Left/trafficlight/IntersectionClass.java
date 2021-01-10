@@ -1,16 +1,17 @@
 package trafficlight;
 
+import java.lang.IllegalArgumentException;
+
 public class IntersectionClass 	
 	extends Intersection {
 
 	public IntersectionClass() {
-		leftVehicleCount = 0;
-		leftVehicleLight = VehicleLight.GREEN;
+		leftRoad = new LeftRoad();
 	}
 	
 	public void enqueueVehicle(Road road) {
 		if(road == Road.LEFT) {
-			leftVehicleCount++;
+			leftRoad.enqueueVehicle();;
 		}
 		else {
 			original(road);
@@ -18,39 +19,29 @@ public class IntersectionClass
 	}
 	
 	public void advanceTime() {
-		
+		leftRoad.advanceTime();
 	}
 	
 	public String getIntersectionState() {		
 		return composeIntersectionStateOutput("");
 	}
 	
-	private String composeIntersectionStateOutput(String finishedLeftPart) {
-		return finishedLeftPart + "LV" + leftVehicleLight.toString() + leftVehicleCount + pedestrianInfo(Road.LEFT) + " ";
-	}
-	
-	private String pedestrianInfo(Road road) {
-		return "";
-	}
-	
-	private VehicleLight changeVehicleLight(VehicleLight light) {
-		switch(light) {
-		case RED: return VehicleLight.GREEN;
-		case GREEN: return VehicleLight.RED;
-		default: throw new IllegalArgumentException("The light has the color that shouldn't exist.");
+	public void enqueuePedestrian(Road road) {
+		if(road == Road.LEFT) {
+			leftRoad.enqueuePedestrian();
 		}
+		else {
+			throw new IllegalArgumentException("Cannot parse the road for a pedestrian.");
+		}
+	}
+	
+	private String composeIntersectionStateOutput(String finishedLeftPart) {
+		return finishedLeftPart + leftRoad.getRoadState() + " ";
 	}
 	
 	private void initiateChangingLights() {
-		leftVehicleLight = changeVehicleLight(leftVehicleLight);
+		leftRoad.changeLights();
 	}
 	
-	private void processVehicles() {
-		if(leftVehicleLight == VehicleLight.GREEN && leftVehicleCount > 0) {
-			leftVehicleCount--;
-		}
-	}
-	
-	private int leftVehicleCount;
-	private VehicleLight leftVehicleLight;
+	private LeftRoad leftRoad;
 }

@@ -10,11 +10,10 @@ public class TimedTest{
 
 	@Test
 	void Roads_enqueueVehicle_HasCorrectOutput() {
+		Intersection sample = Intersection.createIntersection();
 		if (FeatureFlags.topIsActive && FeatureFlags.bottomIsActive) {
 			
-			System.out.println("Simple time test:");
-			
-			Intersection sample = Intersection.createIntersection();
+			System.out.println("Timed test:");
 					
 			sample.enqueueVehicle(Road.LEFT);
 			assertTrue(sample.getIntersectionState().contains("LVg1"));
@@ -54,7 +53,7 @@ public class TimedTest{
 			for(int i = 0; i < 6; i++) {
 				sample.advanceTime();
 			}
-			
+			System.out.println(sample.getIntersectionState());
 			assertTrue(sample.getIntersectionState().contains("LVr0"));
 			assertTrue(sample.getIntersectionState().contains("RVr0"));
 			assertTrue(sample.getIntersectionState().contains("BVg0"));
@@ -77,9 +76,7 @@ public class TimedTest{
 		}
 		else {
 			
-			System.out.println("Simple time test, pruned version:");
-			
-			Intersection sample = Intersection.createIntersection();
+			System.out.println("Simple Timed test:");
 			
 			sample.enqueueVehicle(Road.LEFT);
 			assertTrue(sample.getIntersectionState().contains("LVg1"));
