@@ -8,11 +8,9 @@ import trafficlight.FeatureFlags;
 
 public class OrangeTest{
 	
-	//TODO change the test to have orange
 	@Test
 	void Roads_PedestrianOrangeTimed_MultipleChecks() {
 		Intersection sample = Intersection.createIntersection();
-		System.out.println("Orange and Timed test");
 		
 		sample.enqueueVehicle(Road.BOTTOM);
 		sample.enqueuePedestrian(Road.BOTTOM);
@@ -53,7 +51,7 @@ public class OrangeTest{
 		sample.advanceTime();
 		sample.enqueuePedestrian(Road.BOTTOM);
 		sample.enqueuePedestrian(Road.TOP);
-		assertTrue(sample.getIntersectionState().contains("LVo1Pr1 RVo1Pr1 BVr4Pg1 TVr1Pg1"));
+		assertTrue(sample.getIntersectionState().contains("LVo1Pr2 RVo1Pr2 BVr4Pg1 TVr1Pg1"));
 		
 		//12
 		sample.advanceTime();
@@ -61,11 +59,11 @@ public class OrangeTest{
 		sample.enqueuePedestrian(Road.LEFT);
 		sample.enqueueVehicle(Road.RIGHT);
 		sample.enqueuePedestrian(Road.RIGHT);
-		assertTrue(sample.getIntersectionState().contains("LVr2Pg1 RVr2Pg1 BVo4Pr1 TVo1Pr1"));
+		assertTrue(sample.getIntersectionState().contains("LVr2Pg2 RVr2Pg2 BVo4Pr1 TVo1Pr1"));
 		
 		//13
 		sample.advanceTime();
-		assertTrue(sample.getIntersectionState().contains("LVr2Pg0 RVr2Pg0 BVo4Pr1 TVo1Pr1"));
+		assertTrue(sample.getIntersectionState().contains("LVr2Pg1 RVr2Pg1 BVo4Pr1 TVo1Pr1"));
 		
 		//14
 		sample.advanceTime();
@@ -74,7 +72,6 @@ public class OrangeTest{
 		//15
 		sample.advanceTime();
 		assertTrue(sample.getIntersectionState().contains("LVr2Pg0 RVr2Pg0 BVg2Pr1 TVg0Pr1"));
-		
 		for(int i = 0; i < 8; i++) {
 			sample.advanceTime();
 		}
@@ -83,18 +80,23 @@ public class OrangeTest{
 		assertTrue(sample.getIntersectionState().contains("LVr2Pg0 RVr2Pg0 BVg0Pr1 TVg0Pr1"));
 		
 		//24
+		sample.advanceTime();
 		assertTrue(sample.getIntersectionState().contains("LVr2Pg0 RVr2Pg0 BVo0Pr1 TVo0Pr1"));
 		
 		//25
+		sample.advanceTime();
 		assertTrue(sample.getIntersectionState().contains("LVr2Pg0 RVr2Pg0 BVo0Pr1 TVo0Pr1"));
 		
 		//26
+		sample.advanceTime();
 		assertTrue(sample.getIntersectionState().contains("LVo2Pr0 RVo2Pr0 BVr0Pg0 TVr0Pg0"));
 		
 		//27
+		sample.advanceTime();
 		assertTrue(sample.getIntersectionState().contains("LVo2Pr0 RVo2Pr0 BVr0Pg0 TVr0Pg0"));
 		
 		//28
+		sample.advanceTime();
 		assertTrue(sample.getIntersectionState().contains("LVg1Pr0 RVg1Pr0 BVr0Pg0 TVr0Pg0"));
 		
 		for(int i = 0; i < 5; i++) {

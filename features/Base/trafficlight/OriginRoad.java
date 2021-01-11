@@ -1,5 +1,7 @@
 package trafficlight;
 
+import java.lang.IllegalArgumentException;
+
 public abstract class OriginRoad {
 	
 	protected OriginRoad() {

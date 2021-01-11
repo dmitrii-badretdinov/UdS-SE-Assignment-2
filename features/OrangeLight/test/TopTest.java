@@ -10,21 +10,6 @@ import trafficlight.Road;
 
 public class TopTest{
 	@Test
-	void composeIntersectionStateOutput_createIntersection_HasTVr0() {
-		Intersection sample = Intersection.createIntersection();
-		assertTrue(sample.getIntersectionState().contains("TVr0"));
-	}
-	
-	@Test
-	void composeIntersectionStateOutput_enqueueVehicle_HasTVr3() {
-		Intersection sample = Intersection.createIntersection();
-		sample.enqueueVehicle(Road.TOP);
-		sample.enqueueVehicle(Road.TOP);
-		sample.enqueueVehicle(Road.TOP);
-		assertTrue(sample.getIntersectionState().contains("TVr3"));
-	}
-	
-	@Test
 	void Top_Timed_MultipleChecks() {
 		Intersection sample = Intersection.createIntersection();
 		if(FeatureFlags.timedIsActive) {
@@ -58,26 +43,6 @@ public class TopTest{
 			assertTrue(sample.getIntersectionState().contains("LVg0"));
 			assertTrue(sample.getIntersectionState().contains("RVg0"));
 			assertTrue(sample.getIntersectionState().contains("TVr2"));
-			
-			for(int i = 0; i < 6; i++) {
-				sample.advanceTime();
-			}
-			assertTrue(sample.getIntersectionState().contains("LVr0"));
-			assertTrue(sample.getIntersectionState().contains("RVr0"));
-			assertTrue(sample.getIntersectionState().contains("TVg1"));
-			
-			sample.advanceTime();
-			assertTrue(sample.getIntersectionState().contains("LVr0"));
-			assertTrue(sample.getIntersectionState().contains("RVr0"));
-			assertTrue(sample.getIntersectionState().contains("TVg0"));
-			
-			for(int i = 0; i < 9; i++) {
-				sample.advanceTime();
-			}
-			
-			assertTrue(sample.getIntersectionState().contains("LVg0"));
-			assertTrue(sample.getIntersectionState().contains("RVg0"));
-			assertTrue(sample.getIntersectionState().contains("TVr0"));
 		}
 	}
 }

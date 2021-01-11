@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import trafficlight.Intersection;
 import trafficlight.Road;
+import trafficlight.FeatureFlags;
 
 public class TimedTest{
 
@@ -47,28 +48,30 @@ public class TimedTest{
 		assertTrue(sample.getIntersectionState().contains("BVr1"));
 		assertTrue(sample.getIntersectionState().contains("TVr2"));
 		
-		for(int i = 0; i < 6; i++) {
+		if(!FeatureFlags.orangeIsActive) {
+			for(int i = 0; i < 6; i++) {
+				sample.advanceTime();
+			}
+			assertTrue(sample.getIntersectionState().contains("LVr0"));
+			assertTrue(sample.getIntersectionState().contains("RVr0"));
+			assertTrue(sample.getIntersectionState().contains("BVg0"));
+			assertTrue(sample.getIntersectionState().contains("TVg1"));
+			
 			sample.advanceTime();
+			assertTrue(sample.getIntersectionState().contains("LVr0"));
+			assertTrue(sample.getIntersectionState().contains("RVr0"));
+			assertTrue(sample.getIntersectionState().contains("BVg0"));
+			assertTrue(sample.getIntersectionState().contains("TVg0"));
+			
+			for(int i = 0; i < 9; i++) {
+				sample.advanceTime();
+			}
+			
+			assertTrue(sample.getIntersectionState().contains("LVg0"));
+			assertTrue(sample.getIntersectionState().contains("RVg0"));
+			assertTrue(sample.getIntersectionState().contains("BVr0"));
+			assertTrue(sample.getIntersectionState().contains("TVr0"));
 		}
-		assertTrue(sample.getIntersectionState().contains("LVr0"));
-		assertTrue(sample.getIntersectionState().contains("RVr0"));
-		assertTrue(sample.getIntersectionState().contains("BVg0"));
-		assertTrue(sample.getIntersectionState().contains("TVg1"));
-		
-		sample.advanceTime();
-		assertTrue(sample.getIntersectionState().contains("LVr0"));
-		assertTrue(sample.getIntersectionState().contains("RVr0"));
-		assertTrue(sample.getIntersectionState().contains("BVg0"));
-		assertTrue(sample.getIntersectionState().contains("TVg0"));
-		
-		for(int i = 0; i < 9; i++) {
-			sample.advanceTime();
-		}
-		
-		assertTrue(sample.getIntersectionState().contains("LVg0"));
-		assertTrue(sample.getIntersectionState().contains("RVg0"));
-		assertTrue(sample.getIntersectionState().contains("BVr0"));
-		assertTrue(sample.getIntersectionState().contains("TVr0"));
 	}
 	
 	@Test
@@ -99,21 +102,23 @@ public class TimedTest{
 		assertTrue(sample.getIntersectionState().contains("LVg0"));
 		assertTrue(sample.getIntersectionState().contains("RVg0"));
 		
-		for(int i = 0; i < 6; i++) {
+		if(!FeatureFlags.orangeIsActive) {
+			for(int i = 0; i < 6; i++) {
+				sample.advanceTime();
+			}
+			assertTrue(sample.getIntersectionState().contains("LVr0"));
+			assertTrue(sample.getIntersectionState().contains("RVr0"));
+			
 			sample.advanceTime();
+			assertTrue(sample.getIntersectionState().contains("LVr0"));
+			assertTrue(sample.getIntersectionState().contains("RVr0"));
+			
+			for(int i = 0; i < 9; i++) {
+				sample.advanceTime();
+			}
+			
+			assertTrue(sample.getIntersectionState().contains("LVg0"));
+			assertTrue(sample.getIntersectionState().contains("RVg0"));
 		}
-		assertTrue(sample.getIntersectionState().contains("LVr0"));
-		assertTrue(sample.getIntersectionState().contains("RVr0"));
-		
-		sample.advanceTime();
-		assertTrue(sample.getIntersectionState().contains("LVr0"));
-		assertTrue(sample.getIntersectionState().contains("RVr0"));
-		
-		for(int i = 0; i < 9; i++) {
-			sample.advanceTime();
-		}
-		
-		assertTrue(sample.getIntersectionState().contains("LVg0"));
-		assertTrue(sample.getIntersectionState().contains("RVg0"));
 	}
 }

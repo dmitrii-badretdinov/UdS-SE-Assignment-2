@@ -13,7 +13,6 @@ public class LeftTest{
 	@Test
 	void composeIntersectionStateOutput_createIntersection_HasLVg0() {
 		Intersection sample = Intersection.createIntersection();
-		System.out.format(OutputSettings.testNameFormat + OutputSettings.testResultFormat + "\n", "Left basic:", sample.getIntersectionState());
 		assertTrue(sample.getIntersectionState().contains("LVg0"));
 	}
 	
@@ -23,7 +22,6 @@ public class LeftTest{
 		sample.enqueueVehicle(Road.LEFT);
 		sample.enqueueVehicle(Road.LEFT);
 		sample.enqueueVehicle(Road.LEFT);
-		System.out.format(OutputSettings.testNameFormat + OutputSettings.testResultFormat + "\n", "Left vehicles:", sample.getIntersectionState());
 		assertTrue(sample.getIntersectionState().contains("LVg3"));
 	}
 }

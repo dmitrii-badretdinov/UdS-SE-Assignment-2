@@ -57,7 +57,6 @@ public class BottomTest{
 	@Test
 	void composeIntersectionStateOutput_createIntersection_HasBVr0() {
 		Intersection sample = Intersection.createIntersection();
-		System.out.format(OutputSettings.testNameFormat + OutputSettings.testResultFormat + "\n", "Bottom basic:", sample.getIntersectionState());
 		assertTrue(sample.getIntersectionState().contains("BVr0"));
 	}
 	
@@ -67,7 +66,6 @@ public class BottomTest{
 		sample.enqueueVehicle(Road.BOTTOM);
 		sample.enqueueVehicle(Road.BOTTOM);
 		sample.enqueueVehicle(Road.BOTTOM);
-		System.out.format(OutputSettings.testNameFormat + OutputSettings.testResultFormat + "\n", "Bottom vehicles:", sample.getIntersectionState());
 		assertTrue(sample.getIntersectionState().contains("BVr3"));
 	}
 	

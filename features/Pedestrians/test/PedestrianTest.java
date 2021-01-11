@@ -25,29 +25,30 @@ public class PedestrianTest{
 			}
 			assertTrue(sample.getIntersectionState().contains("LVg0Pr3"));
 			
-			for(int i = 0; i < 7; i++) {
-				sample.advanceTime();
-			}
-			assertTrue(sample.getIntersectionState().contains("LVr0Pg2"));
-			
-			for(int i = 0; i < 2; i++) {
-				sample.advanceTime();
-			}
-			assertTrue(sample.getIntersectionState().contains("LVr0Pg0"));
-			
-			for(int i = 0; i < 3; i++) {
-				sample.enqueueVehicle(Road.LEFT);
-				sample.enqueueVehicle(Road.RIGHT);
-				sample.enqueueVehicle(Road.BOTTOM);
-				sample.enqueueVehicle(Road.TOP);
+			if(!FeatureFlags.orangeIsActive) {
+				for(int i = 0; i < 7; i++) {
+					sample.advanceTime();
+				}
+				assertTrue(sample.getIntersectionState().contains("LVr0Pg2"));
 				
-				sample.enqueuePedestrian(Road.LEFT);
-				sample.enqueuePedestrian(Road.RIGHT);
-				sample.enqueuePedestrian(Road.BOTTOM);
-				sample.enqueuePedestrian(Road.TOP);
+				for(int i = 0; i < 2; i++) {
+					sample.advanceTime();
+				}
+				assertTrue(sample.getIntersectionState().contains("LVr0Pg0"));
+				
+				for(int i = 0; i < 3; i++) {
+					sample.enqueueVehicle(Road.LEFT);
+					sample.enqueueVehicle(Road.RIGHT);
+					sample.enqueueVehicle(Road.BOTTOM);
+					sample.enqueueVehicle(Road.TOP);
+					
+					sample.enqueuePedestrian(Road.LEFT);
+					sample.enqueuePedestrian(Road.RIGHT);
+					sample.enqueuePedestrian(Road.BOTTOM);
+					sample.enqueuePedestrian(Road.TOP);
+				}
+				assertTrue(sample.getIntersectionState().contains("LVr3Pg3 RVr3Pg3 BVg3Pr3 TVg3Pr3"));
 			}
-			assertTrue(sample.getIntersectionState().contains("LVr3Pg3 RVr3Pg3 BVg3Pr3 TVg3Pr3"));
-			
 		}
 	}
 	
@@ -59,7 +60,6 @@ public class PedestrianTest{
 			sample.enqueueVehicle(Road.BOTTOM);
 			sample.enqueuePedestrian(Road.BOTTOM);
 		}
-		System.out.format(OutputSettings.testNameFormat + OutputSettings.testResultFormat + "\n", "Bottom pedestrians:", sample.getIntersectionState());
 		assertTrue(sample.getIntersectionState().contains("BVr3Pg3"));
 	}
 	
@@ -71,7 +71,6 @@ public class PedestrianTest{
 				sample.enqueueVehicle(Road.TOP);
 				sample.enqueuePedestrian(Road.TOP);
 			}
-			System.out.format(OutputSettings.testNameFormat + OutputSettings.testResultFormat + "\n", "Top pedestrians:", sample.getIntersectionState());
 			assertTrue(sample.getIntersectionState().contains("TVr3Pg3"));
 	}
 	
@@ -82,7 +81,6 @@ public class PedestrianTest{
 			sample.enqueueVehicle(Road.LEFT);
 			sample.enqueuePedestrian(Road.LEFT);
 		}
-		System.out.format(OutputSettings.testNameFormat + OutputSettings.testResultFormat + "\n", "Left pedestrians:", sample.getIntersectionState());
 		assertTrue(sample.getIntersectionState().contains("LVg3Pr3"));
 	}
 	
@@ -93,7 +91,6 @@ public class PedestrianTest{
 			sample.enqueueVehicle(Road.RIGHT);
 			sample.enqueuePedestrian(Road.RIGHT);
 		}
-		System.out.format(OutputSettings.testNameFormat + OutputSettings.testResultFormat + "\n", "Right pedestrians:", sample.getIntersectionState());
 		assertTrue(sample.getIntersectionState().contains("RVg3Pr3"));
 	}
 	
@@ -113,15 +110,17 @@ public class PedestrianTest{
 			}
 			assertTrue(sample.getIntersectionState().contains("LVg0Pr3"));
 			
-			for(int i = 0; i < 7; i++) {
-				sample.advanceTime();
+			if(!FeatureFlags.orangeIsActive) {
+				for(int i = 0; i < 7; i++) {
+					sample.advanceTime();
+				}
+				assertTrue(sample.getIntersectionState().contains("LVr0Pg2"));
+				
+				for(int i = 0; i < 2; i++) {
+					sample.advanceTime();
+				}
+				assertTrue(sample.getIntersectionState().contains("LVr0Pg0"));
 			}
-			assertTrue(sample.getIntersectionState().contains("LVr0Pg2"));
-			
-			for(int i = 0; i < 2; i++) {
-				sample.advanceTime();
-			}
-			assertTrue(sample.getIntersectionState().contains("LVr0Pg0"));
 		}
 	}
 }

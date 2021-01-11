@@ -3,13 +3,13 @@ package trafficlight;
 public abstract class OriginRoad {
 	
 	protected OriginRoad() {
-		vehicleCount = 0;
 		pedestrianCount = 0;
 	}
 	
 	public void advanceTime() {
-		processPedestrian();
 		original();
+		updatePedestrianLight();
+		processPedestrian();
 	}
 	
 	public String getRoadState() {
@@ -18,11 +18,6 @@ public abstract class OriginRoad {
 	
 	public void enqueuePedestrian() {
 		pedestrianCount++;
-	}
-	
-	protected void changeLights() {
-		original();
-		updatePedestrianLight();
 	}
 	
 	protected void updatePedestrianLight() {

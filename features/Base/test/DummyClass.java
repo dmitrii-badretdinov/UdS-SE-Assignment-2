@@ -1,48 +1,11 @@
-package trafficlight;
+package test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.junit.jupiter.api.Test;
 
-public class IntersectionClass 	
-	extends Intersection {
-
-	public IntersectionClass() {
-		redPhaseLength = 10;
-		FeatureFlags.onrequestIsActive = true;
-	}
-	
-	private boolean strategyTick() {
-		String roadState = getIntersectionState();
-		
-		if (redPhase) {
-			redPhaseCounter++;
-			System.out.println("Red" + redPhaseCounter);
-			if (redPhaseCounter == redPhaseLength) {
-				redPhase = false;
-				initiateChangingLights();
-				return true;
-			}
-		}
-		else {
-			redPhaseCounter = 0;
-		}
-		
-		if (roadState.contains("LVg")) {
-			leftRightGreenCounter++;
-			System.out.println("Green" + leftRightGreenCounter);
-			if (leftRightGreenCounter > 9 && checkForLRPedestriansAndTBVehicles(roadState)) {
-	            initiateChangingLights();
-	            redPhase = true;
-	            return true;
-			}
-		}
-		else {
-			leftRightGreenCounter = 0;
-		}
-		
-		return false;
-		
-	}
+public class DummyClass{
 	
 	private boolean checkForLRPedestriansAndTBVehicles(String roadState) {
 		foundSomething = false;
@@ -61,14 +24,15 @@ public class IntersectionClass
 		return false;
 	}
 	
-	private int leftRightGreenCounter = 0;
-	private int redPhaseCounter = 0;
-	private boolean redPhase = false;
 	private boolean foundSomething;
-	private int redPhaseLength;
 	private static final Pattern leftPedestriansPattern = Pattern.compile("L\\w+Pg(\\d+)");
 	private static final Pattern rightPedestriansPattern = Pattern.compile("R\\w+Pg(\\d+)");
 	private static final Pattern bottomVehiclesPattern = Pattern.compile("BVr(\\d+)");
 	private static final Pattern topVehiclesPattern = Pattern.compile("TVr(\\d+)");
 	private static final Pattern[] lightChangePatternsArray = new Pattern[] {leftPedestriansPattern, rightPedestriansPattern, bottomVehiclesPattern, topVehiclesPattern};
+	
+	@Test
+	void stringTest() {
+		System.out.println(checkForLRPedestriansAndTBVehicles("LVg0Pr0 RVg0Pr0 BVr0Pg0 TVr0Pg0"));
+	}
 }

@@ -5,10 +5,10 @@
 	<feature automatic="selected" name="Roads"/>
 	<feature automatic="selected" name="Left"/>
 	<feature automatic="selected" name="Right"/>
-	<feature name="Bottom"/>
+	<feature manual="selected" name="Bottom"/>
 	<feature manual="selected" name="Top"/>
-	<feature name="OrangeLight"/>
-	<feature name="Pedestrians"/>
+	<feature manual="selected" name="OrangeLight"/>
+	<feature manual="selected" name="Pedestrians"/>
 	<feature automatic="selected" name="Strategy"/>
 	<feature automatic="unselected" name="Timed"/>
 	<feature manual="selected" name="OnRequest"/>
