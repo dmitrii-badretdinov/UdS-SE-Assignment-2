@@ -18,8 +18,8 @@ public class IntersectionClass
 	}
 	
 	public void advanceTime() {
-		bottomRoad.advanceTime();
 		original();
+		bottomRoad.advanceTime();
 	}
 	
 	public void enqueuePedestrian(Road road) {

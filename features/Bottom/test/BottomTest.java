@@ -18,6 +18,7 @@ public class BottomTest{
 		Intersection sample = Intersection.createIntersection();
 		
 		if(!FeatureFlags.pedestriansIsActive && !FeatureFlags.topIsActive) {
+			System.out.println("Detecting no Top and no Pedestrians. Launching a special test.");
 			for(int i = 0; i < 3; i++) {
 				sample.enqueueVehicle(Road.LEFT);
 				sample.enqueueVehicle(Road.RIGHT);
@@ -36,6 +37,7 @@ public class BottomTest{
 		Intersection sample = Intersection.createIntersection();
 		
 		if(FeatureFlags.pedestriansIsActive && !FeatureFlags.topIsActive) {
+			System.out.println("Detecting no Top but Pedestrians. Launching a special test.");
 			for(int i = 0; i < 3; i++) {
 				sample.enqueueVehicle(Road.LEFT);
 				sample.enqueueVehicle(Road.RIGHT);

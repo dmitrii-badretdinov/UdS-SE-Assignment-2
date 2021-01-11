@@ -19,6 +19,7 @@ public class IntersectionClass
 	}
 	
 	public void advanceTime() {
+		original();
 		leftRoad.advanceTime();
 	}
 	

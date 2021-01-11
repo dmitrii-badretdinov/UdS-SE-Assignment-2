@@ -11,7 +11,15 @@ public class IntersectionClass
 	}
 	
 	public void advanceTime() {
-		throw new Exception("Cannot advance time.");
+		strategyTickWithDelay();
+	}
+	
+	private void strategyTickWithDelay() {
+		strategyTick();
+	}
+	
+	private boolean strategyTick() {
+		return false;
 	}
 	
 	public String getIntersectionState() {

@@ -8,13 +8,14 @@ public class IntersectionClass
 		FeatureFlags.timedIsActive = true;
 	}
 	
-	public void advanceTime() {
+	private boolean strategyTick() {
 		timeCounter++;
 		if (timeCounter == 10) {
 			timeCounter = 0;
 			initiateChangingLights();
+			return true;
 		}
-		original();
+		return false;
 	}
 	
 	private int timeCounter;

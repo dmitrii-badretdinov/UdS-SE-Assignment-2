@@ -21,15 +21,16 @@ public abstract class OriginRoad {
 	}
 	
 	protected void changeLights() {
-		changePedestrianLight();
 		original();
+		updatePedestrianLight();
 	}
 	
-	protected void changePedestrianLight() {
-		switch(pedestrianLight) {
-		case RED: pedestrianLight = PedestrianLight.GREEN; break;
-		case GREEN: pedestrianLight = PedestrianLight.RED; break;
-		default: throw new IllegalArgumentException("The pedestrian light has the color that shouldn't exist.");
+	protected void updatePedestrianLight() {
+		if (vehicleLight == VehicleLight.RED) {
+			pedestrianLight = PedestrianLight.GREEN;
+		}
+		else {
+			pedestrianLight = PedestrianLight.RED;
 		}
 	}
 	

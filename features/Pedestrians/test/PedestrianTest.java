@@ -46,7 +46,7 @@ public class PedestrianTest{
 				sample.enqueuePedestrian(Road.BOTTOM);
 				sample.enqueuePedestrian(Road.TOP);
 			}
-			assertTrue(sample.getIntersectionState().contains("LVr3Pg3 RVr3Pg3 BVr3Pg3 TVr3Pg3"));
+			assertTrue(sample.getIntersectionState().contains("LVr3Pg3 RVr3Pg3 BVg3Pr3 TVg3Pr3"));
 			
 		}
 	}

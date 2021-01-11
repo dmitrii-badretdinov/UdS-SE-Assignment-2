@@ -40,5 +40,5 @@ public abstract class OriginRoad {
 	
 	protected int vehicleCount;
 	protected VehicleLight vehicleLight;
-	protected String roadSpecificLetter;
+	protected String roadSpecificLetter;	
 }
