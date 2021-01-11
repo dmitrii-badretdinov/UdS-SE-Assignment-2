@@ -10,69 +10,67 @@ public class OrangeTest{
 	
 	//TODO change the test to have orange
 	@Test
-	void Roads_enqueueVehicle_HasCorrectOutput() {
+	void Roads_enqueueVehicle_MultipleChecks() {
 		Intersection sample = Intersection.createIntersection();
-		if (FeatureFlags.timedIsActive && FeatureFlags.topIsActive && FeatureFlags.bottomIsActive) {
-			System.out.println("Orange and Timed test");
-			
-			sample.enqueueVehicle(Road.BOTTOM);
-			assertTrue(sample.getIntersectionState().contains("LVg1"));
-			
+		System.out.println("Orange and Timed test");
+		
+		sample.enqueueVehicle(Road.BOTTOM);
+		assertTrue(sample.getIntersectionState().contains("LVg1"));
+		
+		sample.advanceTime();
+		assertTrue(sample.getIntersectionState().contains("LVg0"));
+		
+		sample.enqueueVehicle(Road.LEFT);
+		sample.enqueueVehicle(Road.LEFT);
+		sample.enqueueVehicle(Road.RIGHT);
+		sample.enqueueVehicle(Road.TOP);
+		sample.enqueueVehicle(Road.TOP);
+		sample.enqueueVehicle(Road.BOTTOM);
+		assertTrue(sample.getIntersectionState().contains("LVg2"));
+		assertTrue(sample.getIntersectionState().contains("RVg1"));
+		assertTrue(sample.getIntersectionState().contains("BVr1"));
+		assertTrue(sample.getIntersectionState().contains("TVr2"));
+		
+		sample.advanceTime();
+		assertTrue(sample.getIntersectionState().contains("LVg1"));
+		assertTrue(sample.getIntersectionState().contains("RVg0"));
+		assertTrue(sample.getIntersectionState().contains("BVr1"));
+		assertTrue(sample.getIntersectionState().contains("TVr2"));
+		
+		sample.advanceTime();
+		assertTrue(sample.getIntersectionState().contains("LVg0"));
+		assertTrue(sample.getIntersectionState().contains("RVg0"));
+		assertTrue(sample.getIntersectionState().contains("BVr1"));
+		assertTrue(sample.getIntersectionState().contains("TVr2"));
+		
+		sample.advanceTime();
+		assertTrue(sample.getIntersectionState().contains("LVg0"));
+		assertTrue(sample.getIntersectionState().contains("RVg0"));
+		assertTrue(sample.getIntersectionState().contains("BVr1"));
+		assertTrue(sample.getIntersectionState().contains("TVr2"));
+		
+		for(int i = 0; i < 6; i++) {
 			sample.advanceTime();
-			assertTrue(sample.getIntersectionState().contains("LVg0"));
-			
-			sample.enqueueVehicle(Road.LEFT);
-			sample.enqueueVehicle(Road.LEFT);
-			sample.enqueueVehicle(Road.RIGHT);
-			sample.enqueueVehicle(Road.TOP);
-			sample.enqueueVehicle(Road.TOP);
-			sample.enqueueVehicle(Road.BOTTOM);
-			assertTrue(sample.getIntersectionState().contains("LVg2"));
-			assertTrue(sample.getIntersectionState().contains("RVg1"));
-			assertTrue(sample.getIntersectionState().contains("BVr1"));
-			assertTrue(sample.getIntersectionState().contains("TVr2"));
-			
-			sample.advanceTime();
-			assertTrue(sample.getIntersectionState().contains("LVg1"));
-			assertTrue(sample.getIntersectionState().contains("RVg0"));
-			assertTrue(sample.getIntersectionState().contains("BVr1"));
-			assertTrue(sample.getIntersectionState().contains("TVr2"));
-			
-			sample.advanceTime();
-			assertTrue(sample.getIntersectionState().contains("LVg0"));
-			assertTrue(sample.getIntersectionState().contains("RVg0"));
-			assertTrue(sample.getIntersectionState().contains("BVr1"));
-			assertTrue(sample.getIntersectionState().contains("TVr2"));
-			
-			sample.advanceTime();
-			assertTrue(sample.getIntersectionState().contains("LVg0"));
-			assertTrue(sample.getIntersectionState().contains("RVg0"));
-			assertTrue(sample.getIntersectionState().contains("BVr1"));
-			assertTrue(sample.getIntersectionState().contains("TVr2"));
-			
-			for(int i = 0; i < 6; i++) {
-				sample.advanceTime();
-			}
-			
-			assertTrue(sample.getIntersectionState().contains("LVr0"));
-			assertTrue(sample.getIntersectionState().contains("RVr0"));
-			assertTrue(sample.getIntersectionState().contains("BVg0"));
-			assertTrue(sample.getIntersectionState().contains("TVg1"));
-			
-			sample.advanceTime();
-			assertTrue(sample.getIntersectionState().contains("LVr0"));
-			assertTrue(sample.getIntersectionState().contains("RVr0"));
-			assertTrue(sample.getIntersectionState().contains("BVg0"));
-			assertTrue(sample.getIntersectionState().contains("TVg0"));
-			
-			for(int i = 0; i < 9; i++) {
-				sample.advanceTime();
-			}
-			
-			assertTrue(sample.getIntersectionState().contains("LVg0"));
-			assertTrue(sample.getIntersectionState().contains("RVg0"));
-			assertTrue(sample.getIntersectionState().contains("BVr0"));
-			assertTrue(sample.getIntersectionState().contains("TVr0"));
 		}
+		
+		assertTrue(sample.getIntersectionState().contains("LVr0"));
+		assertTrue(sample.getIntersectionState().contains("RVr0"));
+		assertTrue(sample.getIntersectionState().contains("BVg0"));
+		assertTrue(sample.getIntersectionState().contains("TVg1"));
+		
+		sample.advanceTime();
+		assertTrue(sample.getIntersectionState().contains("LVr0"));
+		assertTrue(sample.getIntersectionState().contains("RVr0"));
+		assertTrue(sample.getIntersectionState().contains("BVg0"));
+		assertTrue(sample.getIntersectionState().contains("TVg0"));
+		
+		for(int i = 0; i < 9; i++) {
+			sample.advanceTime();
+		}
+		
+		assertTrue(sample.getIntersectionState().contains("LVg0"));
+		assertTrue(sample.getIntersectionState().contains("RVg0"));
+		assertTrue(sample.getIntersectionState().contains("BVr0"));
+		assertTrue(sample.getIntersectionState().contains("TVr0"));
 	}
 }

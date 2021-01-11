@@ -1,7 +1,5 @@
 package trafficlight;
 
-import trafficlight.FeatureFlags;
-
 public class IntersectionClass 	
 	extends Intersection {
 	

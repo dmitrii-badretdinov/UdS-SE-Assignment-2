@@ -1,13 +1,10 @@
 package trafficlight;
 
-import trafficlight.FeatureFlags;
-
 public class IntersectionClass 	
 	extends Intersection {
 
 	public IntersectionClass() {
 		timeCounter = 0;
-		
 		FeatureFlags.timedIsActive = true;
 	}
 	
@@ -19,8 +16,6 @@ public class IntersectionClass
 		}
 		original();
 	}
-	
-
 	
 	private int timeCounter;
 }

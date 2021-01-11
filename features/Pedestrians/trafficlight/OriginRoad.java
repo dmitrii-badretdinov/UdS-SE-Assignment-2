@@ -1,35 +1,31 @@
 package trafficlight;
 
-import trafficlight.FeatureFlags;
-
-public class LeftRoad {
+public abstract class OriginRoad {
 	
-	public LeftRoad() {
+	protected OriginRoad() {
+		vehicleCount = 0;
 		pedestrianCount = 0;
-		pedestrianLight = PedestrianLight.RED;
-		
-		FeatureFlags.pedestriansIsActive = true;
 	}
 	
 	public void advanceTime() {
-		processVehicle();
 		processPedestrian();
+		original();
 	}
 	
 	public String getRoadState() {
-		return "LV" + vehicleLight.toString() + vehicleCount + "P" + pedestrianLight.toString() + pedestrianCount;
+		return roadSpecificLetter + "V" + vehicleLight.toString() + vehicleCount + "P" + pedestrianLight.toString() + pedestrianCount;
 	}
 	
 	public void enqueuePedestrian() {
 		pedestrianCount++;
 	}
 	
-	public void changeLights() {
-		changeVehicleLight();
+	protected void changeLights() {
 		changePedestrianLight();
+		original();
 	}
 	
-	public void changePedestrianLight() {
+	protected void changePedestrianLight() {
 		switch(pedestrianLight) {
 		case RED: pedestrianLight = PedestrianLight.GREEN; break;
 		case GREEN: pedestrianLight = PedestrianLight.RED; break;
@@ -42,7 +38,7 @@ public class LeftRoad {
 			pedestrianCount--;
 		}
 	}
-
-	private int pedestrianCount;
-	private PedestrianLight pedestrianLight;
+	
+	protected int pedestrianCount;
+	protected PedestrianLight pedestrianLight;
 }
