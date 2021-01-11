@@ -16,7 +16,6 @@ public class IntersectionClass
 		
 		if (redPhase) {
 			redPhaseCounter++;
-			System.out.println("Red" + redPhaseCounter);
 			if (redPhaseCounter == redPhaseLength) {
 				redPhase = false;
 				initiateChangingLights();
@@ -29,7 +28,6 @@ public class IntersectionClass
 		
 		if (roadState.contains("LVg")) {
 			leftRightGreenCounter++;
-			System.out.println("Green" + leftRightGreenCounter);
 			if (leftRightGreenCounter > 9 && checkForLRPedestriansAndTBVehicles(roadState)) {
 	            initiateChangingLights();
 	            redPhase = true;
@@ -50,7 +48,7 @@ public class IntersectionClass
 			Matcher m = lightChangePatternsArray[i].matcher(roadState);
 			if(m.find()) {
 				foundSomething = true;
-				if(m.group(0) != "0") {
+				if(!m.group(1).equals("0")) {
 					return true;
 				}
 			}
@@ -66,8 +64,8 @@ public class IntersectionClass
 	private boolean redPhase = false;
 	private boolean foundSomething;
 	private int redPhaseLength;
-	private static final Pattern leftPedestriansPattern = Pattern.compile("L\\w+Pg(\\d+)");
-	private static final Pattern rightPedestriansPattern = Pattern.compile("R\\w+Pg(\\d+)");
+	private static final Pattern leftPedestriansPattern = Pattern.compile("L\\w+Pr(\\d+)");
+	private static final Pattern rightPedestriansPattern = Pattern.compile("R\\w+Pr(\\d+)");
 	private static final Pattern bottomVehiclesPattern = Pattern.compile("BVr(\\d+)");
 	private static final Pattern topVehiclesPattern = Pattern.compile("TVr(\\d+)");
 	private static final Pattern[] lightChangePatternsArray = new Pattern[] {leftPedestriansPattern, rightPedestriansPattern, bottomVehiclesPattern, topVehiclesPattern};
