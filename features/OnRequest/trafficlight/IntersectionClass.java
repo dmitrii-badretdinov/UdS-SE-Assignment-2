@@ -8,7 +8,7 @@ public class IntersectionClass
 
 	public IntersectionClass() {
 		redPhaseLength = 10;
-		FeatureFlags.onrequestIsActive = true;
+		FeatureFlags.ondemandIsActive = true;
 	}
 	
 	private boolean strategyTick() {

@@ -24,7 +24,7 @@ public class IntersectionClass
 	}
 	
 	public String getIntersectionState() {		
-		return composeIntersectionStateOutput("");
+		return composeIntersectionStateOutput("").trim();
 	}
 	
 	public void enqueuePedestrian(Road road) {

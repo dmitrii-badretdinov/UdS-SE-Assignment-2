@@ -20,13 +20,10 @@ public class OnDemandTest{
 		for(int i = 0; i < 150; i++) {
 			sample.advanceTime();
 		}
-		assertTrue(sample.getIntersectionState().contains("LVg0Pr0 RVg0Pr0 BVr0Pg0 TVr0Pg0"));
 		
-		sample.enqueuePedestrian(Road.RIGHT);
-		for(int i = 0; i < 20; i++) {
-			sample.advanceTime();
-		}
-		assertTrue(sample.getIntersectionState().contains("LVg0Pr0 RVg0Pr0 BVr0Pg0 TVr0Pg0"));
+		assertTrue(sample.getIntersectionState().contains("LVg0"));
+		assertTrue(sample.getIntersectionState().contains("RVg0"));
+		
 	}
 	
 	@Test
@@ -43,11 +40,8 @@ public class OnDemandTest{
 			for(int i = 0; i < 150; i++) {
 				sample.advanceTime();
 			}
-			assertTrue(sample.getIntersectionState().contains("LVg0Pr0 RVg0Pr0 BVr0Pg0 TVr0Pg0"));
-			
-			sample.enqueuePedestrian(Road.RIGHT);
-			sample.advanceTime();
-			assertTrue(sample.getIntersectionState().contains("LVr0Pg0 RVr0Pg0 BVg0Pr0 TVg0Pr0"));
+			assertTrue(sample.getIntersectionState().contains("LVg0"));
+			assertTrue(sample.getIntersectionState().contains("RVg0"));
 		}
 	}
 }

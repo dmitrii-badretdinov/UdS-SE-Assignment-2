@@ -9,5 +9,5 @@ public class FeatureFlags {
 	public static boolean orangeIsActive = false;
 	public static boolean pedestriansIsActive = false;
 	public static boolean timedIsActive = false;
-	public static boolean onrequestIsActive = false;
+	public static boolean ondemandIsActive = false;
 }
